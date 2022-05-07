@@ -35,6 +35,7 @@ const getMovies = async () => {
         if (response.ok) {
             const jsonResponse = await response.json();
             let movies = jsonResponse.results;
+            console.log("These are the movie results:")
             console.log(movies);
             return movies;
         }
@@ -46,16 +47,19 @@ const getMovies = async () => {
 
 const getMovieInfo = async (movie) => {
     const movieId = movie.id;
+    console.log("Movie ID is: ");
+    console.log(movieId);
     const movieEndpoint = `/movie/${movieId}`;
     const requestParams = `?api_key=${tmdbKey}`;
     const urlToFetch = `${tmdbBaseUrl}${movieEndpoint}${requestParams}`
 
     try {
-        const response = fetch(urlToFetch);
+        const response = await fetch(urlToFetch);
 
         if (response.ok) {
             const jsonResponse = await response.json();
             let movieInfo = jsonResponse;
+            
             return movieInfo;
         }
 
@@ -71,8 +75,14 @@ const showRandomMovie = async () => {
     clearCurrentMovie();
   };
   const movies = await getMovies();
+  console.log("Getting random movie selection ...");
+  console.log(movies);
   const randomMovie = getRandomMovie(movies);
-  const info = getMovieInfo(randomMovie);
+  console.log("The random Movie is: ");
+  console.log(randomMovie);
+  const info = await getMovieInfo(randomMovie);
+  console.log("The movie info: ");
+  console.log(info);
   displayMovie(info);
 };
 

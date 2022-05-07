@@ -1,21 +1,38 @@
+@font-face {
+    font-family: "Avneir Heavy";
+    src: url('../AvenirHeavy/AvenirHeavy.ttf') format("truetype");
+}
+
 body {
-    background-color: #7f0920;
-    color: #0a0408;
+    background-color: #1B1D29;
+    color: #F9F9F9;
+    font-family: "Avenir Heavy", Arial, Helvetica, sans-serif;
 }
 
 #appTitle {
     text-align: center;
     margin: 0px auto;
     display: block;
-    font-family: 'Staatliches', sans-serif;
     font-size: 80px;
+    color: #0072D2;
+}
+
+select {
+    background-color: #32343E;
+    color: #f9f9f9;
+    padding: 14px 24px 14px 24px;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 #genreForm, #playBtn {
     text-align: center;
     margin: 0px auto;
     display: block;
-    font-family: 'Fredoka One', sans-serif;
+}
+
+.highlight {
+    color: #0072D2;
 }
 
 #movieInfo {
@@ -42,7 +59,6 @@ img#moviePoster {
 }
 
 #movieText {
-    font-family: 'Questrial';
     color: #FEFBEA;
     line-height: 1.25;
 }
@@ -54,12 +70,14 @@ img#moviePoster {
 #playBtn {
     margin-top: 20px;
     font-size: 25px;
-    padding: 7px 10px;
-    border-radius: 10px;
+    padding: 7px 12px 7px 12px;
+    border-radius: 4px;
     border-style: none;
-    background-color: #B97828;
-    color: #fdc238;
+    background-color: #0072D2;
+    color: #F9F9F9;
     cursor:  pointer;
+    height: 45px;
+    width: 150px;
 }
 
 label {
