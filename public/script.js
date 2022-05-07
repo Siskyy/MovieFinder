@@ -9,11 +9,11 @@ const getGenres = async () => {
 
     try {
         // send request
-        const response = await fetch(`${urlToFetch}`);
+        const response = await fetch(urlToFetch);
         // handles response if successful
         if (response.ok) {
             const jsonResponse = await response.json();
-            const genres = jsonResponse;
+            let genres = jsonResponse.genres;
             console.log(genres);
             return genres;
         }
@@ -22,12 +22,46 @@ const getGenres = async () => {
     };
 };
 
-const getMovies = () => {
+
+const getMovies = async () => {
     const selectedGenre = getSelectedGenre();
+    const discoverMovieEndpoint = '/discover/movie';
+    const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
+    const urlToFetch = `${tmdbBaseUrl}${discoverMovieEndpoint}${requestParams}`;
+
+    try {
+        const response = await fetch(urlToFetch);
+        
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            let movies = jsonResponse.results;
+            console.log(movies);
+            return movies;
+        }
+    } catch (error) {
+        console.log(error);
+    };
 };
 
-const getMovieInfo = () => {
 
+const getMovieInfo = async (movie) => {
+    const movieId = movie.id;
+    const movieEndpoint = `/movie/${movieId}`;
+    const requestParams = `?api_key=${tmdbKey}`;
+    const urlToFetch = `${tmdbBaseUrl}${movieEndpoint}${requestParams}`
+
+    try {
+        const response = fetch(urlToFetch);
+
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            let movieInfo = jsonResponse;
+            return movieInfo;
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 // Gets a list of movies and ultimately displays the info of a random movie from the list
